@@ -1,3 +1,10 @@
+using System.Transactions;
+using bpmn_dotnet_core6.Bpmn;
+using bpmn_dotnet_core6.DAL;
+using bpmn_dotnet_core6.Dtos;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
 namespace bpmn_dotnet_core6.Domain;
 
  public class ClaimTask
