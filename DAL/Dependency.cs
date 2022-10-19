@@ -4,7 +4,7 @@ namespace bpmn_dotnet_core6.DAL;
 
 public static class Dependency
     {
-        public static IServiceCollection AddDatabase(this IServiceCollection services, string cnnString)
+        public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
             // services.AddDbContext<HeroesDbContext>(options =>
             // {
