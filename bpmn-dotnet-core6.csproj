@@ -18,4 +18,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Bpmn\hire-heroes.bpmn" />
+    <EmbeddedResource Include="Bpmn\hire-heroes.bpmn" />
+  </ItemGroup>
+
 </Project>

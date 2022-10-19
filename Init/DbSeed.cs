@@ -78,15 +78,15 @@ public class DbSeed
 
     private async Task CleanUp()
     {
-        db.Database.ExecuteSqlRaw("DELETE FROM \"Notifications\"");
-        db.Database.ExecuteSqlRaw("DELETE FROM \"Invoices\"");
-        db.Database.ExecuteSqlRaw("DELETE FROM \"Offers\"");
-        db.Database.ExecuteSqlRaw("DELETE FROM \"Orders\"");
-        db.Database.ExecuteSqlRaw("DELETE FROM \"HeroAssignment\"");
-        db.Database.ExecuteSqlRaw("DELETE FROM \"HeroPower\"");
-        db.Database.ExecuteSqlRaw("DELETE FROM \"Heroes\"");
-        db.Database.ExecuteSqlRaw("DELETE FROM \"Customers\"");
-        db.Database.ExecuteSqlRaw("DELETE FROM \"Superpowers\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"Notifications\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"Invoices\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"Offers\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"Orders\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"HeroAssignment\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"HeroPower\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"Heroes\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"Customers\"");
+        // db.Database.ExecuteSqlRaw("DELETE FROM \"Superpowers\"");
 
         await db.SaveChangesAsync();
     }

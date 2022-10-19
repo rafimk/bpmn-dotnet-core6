@@ -1,12 +1,16 @@
+using bpmn_dotnet_core6;
+using bpmn_dotnet_core6.Bpmn;
+using bpmn_dotnet_core6.Init;
+using bpmn_dotnet_core6.DAL;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.services.AddMediatR(typeof(Startup))
-builder.services.AddDataAccess()
-builder.services.AddDbInitializer();
-builder.services.AddCamunda();
+builder.Services.AddMediatR(typeof(CamundaOptions));
+builder.Services.AddDatabase();
+builder.Services.AddDbInitializer();
+builder.Services.AddCamunda(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

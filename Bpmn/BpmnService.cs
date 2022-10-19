@@ -21,7 +21,7 @@ public class BpmnService
     {
         var bpmnResourceStream = this.GetType()
             .Assembly
-            .GetManifestResourceStream("HeroesForHire.Bpmn.hire-heroes.bpmn");
+            .GetManifestResourceStream("bpmn_dotnet_core6.Bpmn.hire-heroes.bpmn");
 
         try
         {
