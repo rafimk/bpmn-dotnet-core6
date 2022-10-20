@@ -15,6 +15,10 @@ public class BpmnProcessDeployService : IHostedService
         await bpmnService.DeployProcessDefinition();
 
         await bpmnService.CleanupProcessInstances();
+
+        await bpmnService.DeployTestProcessDefinition();
+
+        await bpmnService.CleanupTestProcessInstances();
     }
 
     public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;

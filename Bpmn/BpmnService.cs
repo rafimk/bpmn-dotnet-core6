@@ -8,7 +8,7 @@ using Camunda.Api.Client.UserTask;
 
 namespace bpmn_dotnet_core6.Bpmn;
 
-public class BpmnService
+public class BpmnService 
 {
     private readonly CamundaClient camunda;
 
@@ -39,6 +39,28 @@ public class BpmnService
         }
     }
 
+    public async Task DeployTestProcessDefinition()
+    {
+        var bpmnResourceStream = this.GetType()
+            .Assembly
+            .GetManifestResourceStream("bpmn_dotnet_core6.Bpmn.test-work-flow.bpmn");
+
+        try
+        {
+            await camunda.Deployments.Create(
+                "Test Work Flow Deployment",
+                true,
+                true,
+                null,
+                null,
+                new ResourceDataContent(bpmnResourceStream, "test-work-flow.bpmn"));
+        }
+        catch (Exception e)
+        {
+            throw new ApplicationException("Failed to deploy process definition", e);
+        }
+    }
+
     public async Task<string> StartProcessFor(Order order)
     {
         var processParams = new StartProcessInstance()
@@ -58,7 +80,7 @@ public class BpmnService
     {
         var groupTaskQuery = new TaskQuery
         {
-            ProcessDefinitionKeys = {"Process_Hire_Hero"},
+            ProcessDefinitionKeys = { "Process_Hire_Hero" },
             CandidateGroup = group
         };
         var groupTasks = await camunda.UserTasks.Query(groupTaskQuery).List();
@@ -67,7 +89,7 @@ public class BpmnService
         {
             var userTaskQuery = new TaskQuery
             {
-                ProcessDefinitionKeys = {"Process_Hire_Hero"},
+                ProcessDefinitionKeys = { "Process_Hire_Hero" },
                 Assignee = user
             };
             var userTasks = await camunda.UserTasks.Query(userTaskQuery).List();
@@ -109,6 +131,24 @@ public class BpmnService
             .Query(new ProcessInstanceQuery
             {
                 ProcessDefinitionKey = "Process_Hire_Hero"
+            })
+            .List();
+
+        if (instances.Count > 0)
+        {
+            await camunda.ProcessInstances.Delete(new DeleteProcessInstances
+            {
+                ProcessInstanceIds = instances.Select(i => i.Id).ToList()
+            });
+        }
+    }
+
+    public async Task CleanupTestProcessInstances()
+    {
+        var instances = await camunda.ProcessInstances
+            .Query(new ProcessInstanceQuery
+            {
+                ProcessDefinitionKey = "Process_Play"
             })
             .List();
 
